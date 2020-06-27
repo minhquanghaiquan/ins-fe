@@ -9,8 +9,8 @@ Navbar.propTypes = {
 };
 
 function Navbar(props) {
-    // const  searchModal = useRef(null)
-    // const [search,setSearch] = useState('')
+    const  searchModal = useRef(null)
+    const [search,setSearch] = useState('')
     // const [userDetails,setUserDetails] = useState([])
     const {state,dispatch} = useContext(UserContext)
     const history = useHistory()
@@ -25,12 +25,12 @@ function Navbar(props) {
              <li key="4"><Link to="/myfollowingpost">My following Posts</Link></li>,
              <li  key="5">
               <button className="btn #c62828 red darken-3"
-             onClick={()=>{
-               localStorage.clear()
-               dispatch({type:"CLEAR"})
-               history.push('/signin')
-             }}
-             >
+                    onClick={()=>{
+                    localStorage.clear()
+                    dispatch({type:"CLEAR"})
+                    history.push('/signin')
+                    }}
+                >
                  Logout
              </button>
              </li>
@@ -52,6 +52,30 @@ function Navbar(props) {
                 <ul id="nav-mobile" className="right" >
                    {renderList()}
                 </ul>
+            </div>
+
+            <div id="modal1" class="modal" ref={searchModal} style={{color:"black"}}>
+                <div className="modal-content">
+                    {/* <input
+                        type="text"
+                        placeholder="search users"
+                        value={search}
+                        onChange={(e)=>fetchUsers(e.target.value)}
+                    />
+                    <ul className="collection">
+                    {userDetails.map(item=>{
+                        return <Link to={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
+                        M.Modal.getInstance(searchModal.current).close()
+                        setSearch('')
+                        }}><li className="collection-item">{item.email}</li></Link> 
+                    })}
+                    
+                    </ul> */}
+                </div>
+
+                {/* <div className="modal-footer">
+                    <button className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>close</button>
+                </div> */}
             </div>
         </nav>
     );

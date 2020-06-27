@@ -48,6 +48,7 @@ function SignIn(props) {
     
     return (
         <div className="mycard">
+            <div className="card auth-card input-field">
             <h2>Instagram</h2>
             <input
             type="text"
@@ -72,7 +73,7 @@ function SignIn(props) {
             <h6>
                 <Link to="/reset">Forgot password ?</Link>
             </h6>
-    
+            </div>
         </div>
     );
 }
