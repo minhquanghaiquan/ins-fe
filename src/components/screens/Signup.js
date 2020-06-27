@@ -54,7 +54,7 @@ function Signup(props) {
             M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
             return
         }
-        fetch("http://localhost:5000/signup",{
+        fetch("https://ins-be.herokuapp.com/signup",{
             method:"post",
             headers:{
                 "Content-Type":"application/json"

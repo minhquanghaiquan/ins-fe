@@ -6,7 +6,7 @@ const Newpassword  = ()=>{
     const [password,setPasword] = useState("")
     const {token} = useParams()
     const PostData = ()=>{
-        fetch("http://localhost:5000/new-password",{
+        fetch("https://ins-be.herokuapp.com/new-password",{
             method:"post",
             headers:{
                 "Content-Type":"application/json"

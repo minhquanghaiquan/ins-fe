@@ -9,7 +9,7 @@ const Profile  = ()=>{
     const [showfollow,setShowFollow] = useState(state?state.following.includes(userid): true)
     
     useEffect(()=>{
-       fetch(`http://localhost:5000/user/${userid}`,{
+       fetch(`https://ins-be.herokuapp.com/user/${userid}`,{
            headers:{
                "Authorization":"Bearer "+localStorage.getItem("jwt")
            }
@@ -23,7 +23,7 @@ const Profile  = ()=>{
 
 
     const followUser = ()=>{
-        fetch('http://localhost:5000/follow',{
+        fetch('https://ins-be.herokuapp.com/follow',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -50,7 +50,7 @@ const Profile  = ()=>{
         })
     }
     const unfollowUser = ()=>{
-        fetch('http://localhost:5000/unfollow',{
+        fetch('https://ins-be.herokuapp.com/unfollow',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",

@@ -11,7 +11,7 @@ function Profile(props) {
     const [image,setImage] = useState("")
 
     useEffect(()=>{
-        fetch('http://localhost:5000/mypost',{
+        fetch('https://ins-be.herokuapp.com/mypost',{
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
@@ -36,7 +36,7 @@ function Profile(props) {
          .then(data=>{
      
         
-            fetch('http://localhost:5000/updatepic',{
+            fetch('https://ins-be.herokuapp.com/updatepic',{
                 method:"put",
                 headers:{
                     "Content-Type":"application/json",

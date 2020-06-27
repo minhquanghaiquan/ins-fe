@@ -12,7 +12,7 @@ const CretePost = ()=>{
 
     useEffect(()=>{
         if(url){
-         fetch("http://localhost:5000/createpost",{
+         fetch("https://ins-be.herokuapp.com/createpost",{
              method:"post",
              headers:{
                  "Content-Type":"application/json",

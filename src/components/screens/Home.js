@@ -12,7 +12,7 @@ function Home(props) {
     const {state,dispatch} = useContext(UserContext)
 
     useEffect(()=>{
-        fetch('http://localhost:5000/allpost',{
+        fetch('https://ins-be.herokuapp.com/allpost',{
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
@@ -27,7 +27,7 @@ function Home(props) {
 
 
      const likePost = (id)=>{
-        fetch('http://localhost:5000/like',{
+        fetch('https://ins-be.herokuapp.com/like',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -53,7 +53,7 @@ function Home(props) {
     }
 
     const unlikePost = (id)=>{
-        fetch('http://localhost:5000/unlike',{
+        fetch('https://ins-be.herokuapp.com/unlike',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -79,7 +79,7 @@ function Home(props) {
     }
 
     const makeComment = (text,postId)=>{
-        fetch('http://localhost:5000/comment',{
+        fetch('https://ins-be.herokuapp.com/comment',{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -107,7 +107,7 @@ function Home(props) {
 
 
     const deletePost = (postid)=>{
-        fetch(`http://localhost:5000/deletepost/${postid}`,{
+        fetch(`https://ins-be.herokuapp.com/deletepost/${postid}`,{
             method:"delete",
             headers:{
                 Authorization:"Bearer "+localStorage.getItem("jwt")
