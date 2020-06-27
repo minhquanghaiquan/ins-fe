@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import M from 'materialize-css'
@@ -15,20 +15,41 @@ function Signup(props) {
     const [name,setName] = useState("")
     const [password,setPasword] = useState("")
     const [email,setEmail] = useState("")
-    // const [image,setImage] = useState("")
-    // const [url,setUrl] = useState(undefined)
+    const [image,setImage] = useState("")
+    const [url,setUrl] = useState(undefined)
 
+    useEffect(()=>{
+        if(url){
+            uploadFields()
+        }
+    },[url])
     
 
 
+    const uploadPic = ()=>{
+        const data = new FormData()
+        data.append("file",image)
+        data.append("upload_preset","new-insta")
+        data.append("cloud_name","cnq")
+        fetch("	https://api.cloudinary.com/v1_1/minhquanghaiquan/image/upload",{
+            method:"post",
+            body:data
+        })
+        .then(res=>res.json())
+        .then(data=>{
+           setUrl(data.url)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
 
 
 
 
 
 
-
-    const PostData = ()=>{
+    const uploadFields = ()=>{
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
             M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
             return
@@ -41,8 +62,8 @@ function Signup(props) {
             body:JSON.stringify({
                 name,
                 password,
-                email
-                // pic:url
+                email,
+                pic:url
             })
         }).then(res=>res.json())
         .then(data=>{
@@ -58,6 +79,14 @@ function Signup(props) {
         })
     }
     
+    const PostData = ()=>{
+        if(image){
+            uploadPic()
+        }else{
+            uploadFields()
+        }
+       
+    }
 
 
 
@@ -85,6 +114,21 @@ function Signup(props) {
             value={password}
             onChange={(e)=>setPasword(e.target.value)}
             />
+
+            <div className="file-field input-field">
+                <div className="btn #64b5f6 blue darken-1">
+                    <span>Upload pic</span>
+                    <input type="file" onChange={(e)=>setImage(e.target.files[0])} />
+                </div>
+                <div className="file-path-wrapper">
+                    <input className="file-path validate" type="text" />
+                </div>
+            </div>
+
+
+
+
+
             <button className="btn waves-effect waves-light #64b5f6 blue darken-1"
             onClick={()=>PostData()}
             >

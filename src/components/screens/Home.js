@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import {UserContext} from '../../App'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
 
 Home.propTypes = {
     
@@ -18,9 +18,13 @@ function Home(props) {
             }
         }).then(res=>res.json())
         .then(result=>{
+            console.log(result.posts)
+            console.log(result.posts[0].postedBy._id)
             setData(result.posts)
         })
      },[])
+
+
 
      const likePost = (id)=>{
         fetch('http://localhost:5000/like',{
@@ -117,6 +121,7 @@ function Home(props) {
             setData(newData)
         })
     }
+    
 
     return (
         <div className="home">
@@ -132,12 +137,9 @@ function Home(props) {
                                 onClick={()=>deletePost(item._id)}
                                 >delete</i>
 
-                            }</h5>
+                            }</h5> 
 
-
-
-
-
+                            <h5>{item.postedBy.name}</h5>
 
                             <div className="card-image">
                                 <img alt="noimg" src={item.photo} />

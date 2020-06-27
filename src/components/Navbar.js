@@ -1,7 +1,7 @@
-import React,{useContext,useRef,useEffect,useState} from 'react'
+import React,{useContext,useRef,useState} from 'react'
 import {Link ,useHistory} from 'react-router-dom'
 import {UserContext} from '../App'
-import M from 'materialize-css'
+
 
 
 Navbar.propTypes = {
@@ -9,9 +9,9 @@ Navbar.propTypes = {
 };
 
 function Navbar(props) {
-    const  searchModal = useRef(null)
-    const [search,setSearch] = useState('')
-    const [userDetails,setUserDetails] = useState([])
+    // const  searchModal = useRef(null)
+    // const [search,setSearch] = useState('')
+    // const [userDetails,setUserDetails] = useState([])
     const {state,dispatch} = useContext(UserContext)
     const history = useHistory()
 

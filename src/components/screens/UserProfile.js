@@ -6,7 +6,7 @@ const Profile  = ()=>{
     
     const {state,dispatch} = useContext(UserContext)
     const {userid} = useParams()
-    const [showfollow,setShowFollow] = useState(true)
+    const [showfollow,setShowFollow] = useState(state?state.following.includes(userid): true)
     
     useEffect(()=>{
        fetch(`http://localhost:5000/user/${userid}`,{
@@ -19,7 +19,7 @@ const Profile  = ()=>{
          
             setProfile(result)
        })
-    },[])
+    },[userid])
 
 
     const followUser = ()=>{
@@ -76,7 +76,6 @@ const Profile  = ()=>{
                  }
              })
              setShowFollow(true)
-             
         })
     }
    return (
